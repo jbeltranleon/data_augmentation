@@ -1,72 +1,13 @@
 import cv2
-from skimage.exposure import rescale_intensity
-from skimage.segmentation import slic
-from skimage.util import img_as_float
-from skimage import io
-import numpy as np
+from augmentation import *
+from datetime import datetime
 
-FOLDER_NAME =  'augmented_image'
-EXTENSION='.png'
-
-#flip
-def flip_image(image, dir):
-    image = cv2.flip(image, dir)
-    cv2.imwrite(FOLDER_NAME + '/flip-' + str(dir) + EXTENSION, image)
-
-def invert_image(image, channel):
-    image = (channel - image)
-    cv2.imwrite(FOLDER_NAME + '/invert-' + str(channel) + EXTENSION, image)
-
-def add_light(image, gamma=1.0):
-    inv_gamma = 1.0 / gamma
-    table = np.array([((i/255.0) ** inv_gamma) * 255
-                    for i in np.arange(0,256)]).astype('uint8')
-
-    image = cv2.LUT(image, table)
-
-    if gamma >=1:
-        cv2.imwrite(FOLDER_NAME + '/ligth-' + str(gamma) + EXTENSION, image)
-    else:
-        cv2.imwrite(FOLDER_NAME + '/dark-' + str(gamma) + EXTENSION, image)
-
-def add_light_color(image, color, gamma=1.0):
-    inv_gamma = 1.0 / gamma
-    image = (color - image)
-    table = np.array([((i/255.0) ** inv_gamma) * 255
-                    for i in np.arange(0,256)]).astype('uint8')
-
-    image = cv2.LUT(image, table)
-
-    if gamma >=1:
-        cv2.imwrite(FOLDER_NAME+'/ligth_color-' + str(gamma) + EXTENSION, image)
-    else:
-        cv2.imwrite(FOLDER_NAME+'/dark_color-' + str(gamma) + EXTENSION, image)
-
-def saturation_image(image, saturation):
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-
-    v = image[:, :, 2]
-    v = np.where(v <= 255 - saturation, v + saturation, 255)
-    image[:, :, 2] = v
-
-    image == cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-    cv2.imwrite(FOLDER_NAME + '/saturation' + str(saturation) + EXTENSION,image)
-
-def hue_image(image, saturation):
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-
-    v = image[:, :, 2]
-    v = np.where(v <= 255 + saturation, v - saturation, 255)
-    image[:, :, 2] = v
-
-    image == cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-    cv2.imwrite(FOLDER_NAME + '/hue' + str(saturation) + EXTENSION,image)
-
+print('Inicio del Proceso')
+start = datetime.now()
 
 image_file = 'consolidation.png'
 image = cv2.imread(image_file)
-print("Read")
-
+print("Read Complete")
 
 flip_image(image, 0)#Horizontal
 flip_image(image, 1)#Vertical
@@ -107,3 +48,71 @@ hue_image(image, 50)
 hue_image(image, 100)
 hue_image(image, 150)
 hue_image(image, 200)
+
+multiply_image(image, 0.5, 1, 1)
+multiply_image(image, 1, 0.5, 1)
+multiply_image(image, 1, 1, 0.5)
+multiply_image(image, 0.5, 0.5, 0.5)
+
+multiply_image(image, 0.25, 1, 1)
+multiply_image(image, 1, 0.25, 1)
+multiply_image(image, 1, 1, 0.25)
+multiply_image(image, 0.25, 0.25, 0.25)
+
+multiply_image(image, 1.25, 1, 1)
+multiply_image(image, 1, 1.25, 1)
+multiply_image(image, 1, 1, 1.25)
+multiply_image(image, 1.25, 1.25, 1.25)
+
+multiply_image(image, 1.5, 1, 1)
+multiply_image(image, 1, 1.5, 1)
+multiply_image(image, 1, 1, 1.5)
+multiply_image(image, 1.5, 1.5, 1.5)
+
+gaussian_blur(image, 0.25)
+gaussian_blur(image, 0.50)
+gaussian_blur(image, 1)
+gaussian_blur(image, 2)
+gaussian_blur(image, 4)
+
+averageing_blur(image, 5)
+averageing_blur(image, 4)
+averageing_blur(image, 6)
+
+median_blur(image, 3)
+median_blur(image, 5)
+median_blur(image, 7)
+
+bilateral_blur(image, 9, 75, 75)
+bilateral_blur(image, 12, 100, 100)
+bilateral_blur(image, 25, 100, 100)
+bilateral_blur(image, 40, 75, 75)
+
+erosion_image(image, 1)
+erosion_image(image, 3)
+erosion_image(image, 6)
+
+dilatation_image(image, 1)
+dilatation_image(image, 3)
+dilatation_image(image, 5)
+
+opening_image(image, 1)
+opening_image(image, 3)
+opening_image(image, 5)
+
+morphological_gradient_image(image, 5)
+morphological_gradient_image(image, 10)
+morphological_gradient_image(image, 15)
+
+top_hat_image(image, 200)
+top_hat_image(image, 300)
+top_hat_image(image, 500)
+
+black_hat_image(image, 200)
+black_hat_image(image, 300)
+black_hat_image(image, 500)
+
+end = datetime.now()
+
+print('Final del proceso')
+print('Duracion: {}'.format(end-start))
