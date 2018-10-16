@@ -25,7 +25,7 @@ for image_file in filenames:
     print('Image: ' + image_file + ' ' + str(counter) + ' of ' + str(len(filenames)))
     name = image_file[:len(image_file)-4]
     image = cv2.imread(folder + image_file)
-    print("Read Complete")
+    # print("Read Complete")
 
     booster = Booster(folder, extension, name)
 
@@ -107,7 +107,7 @@ for image_file in filenames:
     ## booster.morphological_gradient_image(image, 5)
     # booster.morphological_gradient_image(image, 10)
     # booster.morphological_gradient_image(image, 15)
-    booster.top_hat_image(image, 200)
+    # booster.top_hat_image(image, 200)
     # booster.top_hat_image(image, 300)
     # booster.top_hat_image(image, 500)
     # booster.black_hat_image(image, 200)
