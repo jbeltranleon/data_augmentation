@@ -9,10 +9,11 @@ folder =  'augmented_image_sel'
 extension='.png'
 
 image_file = 'consolidation.png'
+name = image_file[:len(image_file)-4]
 image = cv2.imread(image_file)
 print("Read Complete")
 
-booster = Booster(folder, extension, image_file)
+booster = Booster(folder, extension, name)
 
 
 # booster.flip_image(image, 0)#Horizontal
