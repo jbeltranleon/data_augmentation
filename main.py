@@ -33,7 +33,7 @@ for image_file in filenames:
     # booster.flip_image(image, 0)#Horizontal
     # booster.flip_image(image, 1)#Vertical
     # booster.flip_image(image, -1)#Both
-    booster.invert_image(image, 255)
+    ## booster.invert_image(image, 255)
     # booster.invert_image(image, 200)
     # booster.invert_image(image, 150)
     # booster.invert_image(image, 100)
