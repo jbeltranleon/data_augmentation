@@ -1,6 +1,6 @@
 Atelectasis: 4215 | 1 = 8430
 Cardiomegaly: 1093 | 5 = 6558 (OK)
-Consolidation: 1310 | 6 = 6550
+Consolidation: 1310 | 4 = 6550
 Effusion: 3955 | 1 = 7910
 Infiltration: 9547
 Mass: 2139 | 2 = 6417

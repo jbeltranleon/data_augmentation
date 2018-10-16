@@ -38,7 +38,7 @@ for image_file in filenames:
     # booster.invert_image(image, 150)
     # booster.invert_image(image, 100)
     # booster.invert_image(image, 50)
-    booster.add_light(image, 1.5)
+    ## booster.add_light(image, 1.5)
     # booster.add_light(image, 2.0)
     # booster.add_light(image, 2.5)
     # booster.add_light(image, 3.0)
