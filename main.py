@@ -15,6 +15,18 @@ folder = args.directory + '/'
 
 filenames = os.listdir(folder)
 print(filenames[0])
+print(filenames[:5])
+print(len(filenames))
+
+from random import shuffle
+from math import floor
+
+shuffle(filenames)
+print(filenames[:5])
+reduction = floor(len(filenames)*0.4)
+filenames = filenames[:reduction]
+print(len(filenames))
+print(filenames[:5])
 
 extension='.png'
 
