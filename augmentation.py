@@ -134,12 +134,15 @@ class Booster:
         image = cv2.morphologyEx(image, cv2.MORPH_BLACKHAT, kernel)
         cv2.imwrite(self.folder+'/{}-black_hat-'.format(self.name)+str(shift)+self.extension, image)
 
+    #https://docs.opencv.org/3.1.0/d5/daf/tutorial_py_histogram_equalization.html
     def clahe_image_gray(self, image):
         gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
         image = clahe.apply(gray_image)
         cv2.imwrite(self.folder+'/{}-clahe_gray'.format(self.name)+self.extension, image)
 
+    # https://stackoverflow.com/questions/25008458/how-to-apply-clahe-on-rgb-color-images
+    #Conversion of RGB to LAB(L for lightness and a and b for the color opponents green–red and blue–yellow) will do the work. Apply CLAHE to the converted image in LAB format to only Lightness component and convert back the image to RGB. Here is the snippet.
     def clahe_image_color(self, image):
         lab = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)
         lab_planes = cv2.split(lab)
