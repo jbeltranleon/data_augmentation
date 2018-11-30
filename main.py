@@ -23,8 +23,8 @@ from math import floor
 
 shuffle(filenames)
 print(filenames[:5])
-reduction = floor(len(filenames)*0.4)
-filenames = filenames[:reduction]
+# reduction = floor(len(filenames)*0.4)
+# filenames = filenames[:reduction]
 print(len(filenames))
 print(filenames[:5])
 
@@ -58,7 +58,8 @@ for image_file in filenames:
     # booster.add_light(image, 5.0)
     booster.add_light(image, 0.7)
     print("Revisión")
-    booster.clahe_image(image)
+    booster.clahe_image_gray(image)
+    booster.clahe_image_color(image)
     # booster.add_light(image, 0.3)
     # booster.add_light(image, 0.1)
     ## booster.add_light_color(image, 255 ,1.5)
