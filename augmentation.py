@@ -70,7 +70,7 @@ class Booster:
         v = np.where(v <= 255 + saturation, v - saturation, 255)
         image[:, :, 2] = v
 
-        image == cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
         cv2.imwrite(self.folder + '/{}-hue-'.format(self.name) + str(saturation) + self.extension,image)
 
     def multiply_image(self, image, R,G,B):
@@ -132,4 +132,12 @@ class Booster:
     def black_hat_image(self, image, shift):
         kernel = np.ones((shift,shift),np.uint8)
         image = cv2.morphologyEx(image, cv2.MORPH_BLACKHAT, kernel)
-        cv2.imwrite(self.folder+'/{}black_hat-'.format(self.name)+str(shift)+self.extension, image)
+        cv2.imwrite(self.folder+'/{}-black_hat-'.format(self.name)+str(shift)+self.extension, image)
+
+    def clahe_image(self, image):
+        gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
+        image = clahe.apply(gray_image)
+        cv2.imwrite(self.folder+'/{}-clahe'.format(self.name)+self.extension, image)
+
+        

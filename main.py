@@ -37,7 +37,7 @@ for image_file in filenames:
     print('Image: ' + image_file + ' ' + str(counter) + ' of ' + str(len(filenames)))
     name = image_file[:len(image_file)-4]
     image = cv2.imread(folder + image_file)
-    # print("Read Complete")
+    print("Read Complete")
 
     booster = Booster(folder, extension, name)
 
@@ -57,6 +57,8 @@ for image_file in filenames:
     # booster.add_light(image, 4.0)
     # booster.add_light(image, 5.0)
     booster.add_light(image, 0.7)
+    print("Revisión")
+    booster.clahe_image(image)
     # booster.add_light(image, 0.3)
     # booster.add_light(image, 0.1)
     ## booster.add_light_color(image, 255 ,1.5)
