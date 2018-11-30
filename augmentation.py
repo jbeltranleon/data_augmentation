@@ -6,10 +6,11 @@ import cv2
 import numpy as np
 
 class Booster:
-    def __init__(self, folder, extension, name):
+    def __init__(self, folder, extension, name, output_folder):
         self.folder = folder
         self.extension = extension
         self.name = name
+        self.output_folder = output_folder
 
     #flip
     def flip_image(self, image, dir):
@@ -150,4 +151,5 @@ class Booster:
         lab_planes[0] = clahe.apply(lab_planes[0])
         lab = cv2.merge(lab_planes)
         image = cv2.cvtColor(lab, cv2.COLOR_LAB2BGR)
-        cv2.imwrite(self.folder+'/{}-clahe_color'.format(self.name)+self.extension, image)
+        #cv2.imwrite(self.folder+'/{}-clahe_color'.format(self.name)+self.extension, image)
+        cv2.imwrite(self.output_folder+'/'+format(self.name)+self.extension, image)

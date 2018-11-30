@@ -7,11 +7,13 @@ import argparse
 print('Inicio del Proceso')
 start = datetime.now()
 
-parser = argparse.ArgumentParser(description='Recive a Path of a Folder')
-parser.add_argument('directory', type=str, help='A folder path')
+parser = argparse.ArgumentParser(description='Recive Paths')
+parser.add_argument('directory', type=str, help='input path')
+parser.add_argument('output', type=str, help='output path')
 
 args = parser.parse_args()
 folder = args.directory + '/'
+output_folder = args.output + '/'
 
 filenames = os.listdir(folder)
 print(filenames[0])
@@ -39,7 +41,8 @@ for image_file in filenames:
     image = cv2.imread(folder + image_file)
     print("Read Complete")
 
-    booster = Booster(folder, extension, name)
+    print(output_folder)
+    booster = Booster(folder, extension, name, output_folder)
 
 
     # booster.flip_image(image, 0)#Horizontal
@@ -56,9 +59,9 @@ for image_file in filenames:
     # booster.add_light(image, 3.0)
     # booster.add_light(image, 4.0)
     # booster.add_light(image, 5.0)
-    booster.add_light(image, 0.7)
+    # booster.add_light(image, 0.7)
     print("Revisión")
-    booster.clahe_image_gray(image)
+    # booster.clahe_image_gray(image)
     booster.clahe_image_color(image)
     # booster.add_light(image, 0.3)
     # booster.add_light(image, 0.1)
