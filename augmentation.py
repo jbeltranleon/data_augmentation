@@ -152,4 +152,6 @@ class Booster:
         lab = cv2.merge(lab_planes)
         image = cv2.cvtColor(lab, cv2.COLOR_LAB2BGR)
         #cv2.imwrite(self.folder+'/{}-clahe_color'.format(self.name)+self.extension, image)
+        #overwrite
         cv2.imwrite(self.output_folder+'/'+format(self.name)+self.extension, image)
+        #cv2.imwrite(self.folder+'/{}-clahe_color'.format(self.name)+self.extension, image)
