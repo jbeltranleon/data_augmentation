@@ -25,8 +25,8 @@ auto = True
 if auto:
     for package in packages:
         for label in labels:
-            folder = "{}{}/{}".format(base_folder, package, label)
-            output_folder = "{}{}/{}".format(base_output_folder, package, label)
+            folder = "{}{}/{}/".format(base_folder, package, label)
+            output_folder = "{}{}/{}/".format(base_output_folder, package, label)
 
             filenames = os.listdir(folder)
             print(filenames[0])
