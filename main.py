@@ -61,7 +61,7 @@ for image_file in filenames:
     # booster.add_light(image, 5.0)
     # booster.add_light(image, 0.7)
     print("Revisión")
-    booster.clahe_image_gray(image)
+    # booster.clahe_image_gray(image)
     booster.clahe_image_color(image)
     # booster.add_light(image, 0.3)
     # booster.add_light(image, 0.1)
